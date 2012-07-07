@@ -1,0 +1,45 @@
+<% content_for :javascripts, javascript_include_tag(:orders) %>
+
+<%= simple_form_for(@order,
+  :html => { :class => 'form-horizontal' }) do |f| %>
+  
+  <%= render 'shared/form_errors', :f => f %>
+
+  <legend>Cliente</legend>
+  <div id="client-select">
+    <%= f.association :client, :input_html => {
+      :'data-placeholder' => 'Escolha um cliente' },
+      :include_blank => true %>
+  </div>
+
+  <div id="client-register">
+    <% @order.build_client if @order.client.nil? %>
+    <%= f.simple_fields_for :client do |fc| %>
+      <%= fc.input :name %>
+      <%= fc.input :address %>
+      <%= fc.input :phone %>
+    <% end %>
+  </div>
+
+  <legend>Cachorro</legend>
+  <%= f.association :dog, :input_html => {
+      :'data-placeholder' => 'Escolha um Cachorro' },
+      :include_blank => true  %>
+
+  <% @order.build_dog if @order.dog.nil? %>
+  <%= f.simple_fields_for :dog do |fc| %>
+    <%= fc.input :name %>
+    <%= fc.input :race %>
+  <% end %>
+
+  <legend>+ Informações</legend>
+  <%= f.input :price %>
+  <%= f.input :info, :as => :text,
+    :input_html => {
+      :rows => 10 } %>
+
+  <div class="form-actions">
+    <%= f.submit :label => 'Finalizar atendimento', :class => 'btn-primary' %>
+    <%= link_to 'Cancelar', root_path, :class => 'btn pull-right' %>
+  </div>
+<% end %>

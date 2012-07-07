@@ -1,0 +1,61 @@
+<h1>Lista de Clientes Cadastrados</h1>
+
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>Endereço</th>
+    <th>Telefone</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @clients.each do |client| %>
+  <tr>
+    <td><%= client.name %></td>
+    <td><%= client.address %></td>
+    <td><%= client.phone %></td>
+    <td><%= link_to 'Show', client %></td>
+    <td><%= link_to 'Edit', edit_client_path(client) %></td>
+    <td><%= link_to 'Destroy', client, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Ver Cachorros', '#', class: "dogs-list", :'data-client-id' => client.id %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Cadastrar novo cliente', new_client_path %>
+
+<% content_for :javascripts do %>
+  <script type="text/javascript">
+    var compiled = _.template("<tr class='dogs'> \
+      <td colspan='100'> \
+        <div style='display:none'> \
+          <ul> \
+            <%% _.each(dogs, function(dog) { %> \
+              <li><%%= dog.name %> - <%%= dog.race %></li> \
+            <%% }); %> \
+          </ul> \
+        </div> \
+      </td> \
+    <tr>");
+
+    $('a.dogs-list').click(function() {
+      var tr = $('tr.dogs');
+      if (tr.length !== 0) {
+        tr.find('div').slideUp(function () {
+          tr.remove();
+        });
+        return;
+      }
+      var id = $(this).data('client-id'),
+        self = this;
+      $.get('dogs', {client_id: id}, function(data) {
+        $(self).parents('tr').after(compiled({dogs: data}));
+        $('tr.dogs div').slideDown();
+      }, 'json');
+    });
+  </script>
+<% end %>

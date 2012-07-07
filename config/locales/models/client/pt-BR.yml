@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      client: Cliente
+    attributes:
+      client:
+        name: Nome
+        address: Endereço
+        phone: Telefone

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: "Rex"
+  owner_id: one
+  race: "xiuaua"
+
+two:
+  name: "MyString"
+  owner_id: two
+  race: "hotvaile"

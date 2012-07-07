@@ -1,0 +1,46 @@
+<h2>Pedidos do dia</h2>
+
+<table>
+  <% Order.open_today.each do |order| %>
+    <tr>
+      <td><%= order.client.name %></td>
+      <td><%= order.dog.name %></td>
+      <td><%= distance_of_time_in_words_to_now order.created_at %></td>
+      <td>
+        <%= form_tag order,
+          :method => :put,
+          :remote => true,
+          :class => 'close-order',:style => 'display:inline' do %>
+          <%= hidden_field_tag 'order[status]', Order::Status::CLOSED %>
+          <%= link_to 'fechar', '', :onclick => '$(this).parent("form").submit()', :confirm => 'Deseja mesmo fechar este pedido?' %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<h2>Últimos pedidos atendidos</h2>
+
+<table>
+  <% Order.closed_today.each do |order| %>
+    <tr>
+      <td><%= order.client.name %></td>
+      <td><%= order.dog.name %></td>
+      <td><%= distance_of_time_in_words_to_now order.created_at %></td>
+    </tr>
+  <% end %>
+</table>
+
+
+<h2>Novo atendimento</h2>
+
+<%= link_to 'Novo Pedido', new_order_path %>
+
+
+<% content_for :javascripts do %>
+  <script type="text/javascript">
+    $('form.close-order')
+      .bind('ajax:success', function(){ window.location.reload(true) })
+      .bind('ajax:failure', function(){ alert('Erro ao fechar pedido, tente novamente mais tarde') });
+  </script>
+<% end %>

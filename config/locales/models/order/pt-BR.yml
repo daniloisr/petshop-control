@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      order: Atendimento
+    attributes:
+      order:
+        client: Cliente
+        dog: Cachorro
+        info: Informações
+        status: Situação
+        price: Valor
+      

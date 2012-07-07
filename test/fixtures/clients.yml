@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: "Fulano 1"
+  address: "Rua 12, quadra 1"
+  phone: "3535-1458"
+
+two:
+  name: "Fulano 2"
+  address: "Rua 14, quadra 2"
+  phone: "3535-1235"

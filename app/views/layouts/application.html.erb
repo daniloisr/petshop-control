@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BolaDePelo</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="container" style="margin-top:20px">
+    <div class="row">
+    
+      <div class="span8 offset2">
+        <ul class="nav nav-tabs">
+          <li class="<%= request.path == root_path ? 'active' : '' %>">
+            <%= link_to 'Home', root_path %>
+          </li>
+          <%= content_tag :li, :class => controller.is_a?(OrdersController) ? 'active' : '' do %>
+            <%= link_to 'Atendimento', orders_path %>
+          <% end %>
+          <%= content_tag :li, :class => controller.is_a?(ClientsController) ? 'active' : '' do %>
+            <%= link_to 'Clientes', clients_path %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="span8 offset2">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+
+  <%= javascript_include_tag "application" %>
+  <%= yield :javascripts %>
+</body>
+</html>

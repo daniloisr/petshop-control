@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Cliente:</b>
+  <%= @order.client.name %>
+</p>
+
+<p>
+  <b>Cachorro:</b>
+  <%= @order.dog.name %>
+</p>
+
+<p>
+  <b>Valor:</b>
+  <%= @order.price %>
+</p>
+
+<p>
+  <b>Situação:</b>
+  <%= t(".status.#{@order.status}") %>
+</p>
+
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>

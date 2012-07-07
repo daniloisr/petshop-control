@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      dog: Cachorro
+    attributes:
+      dog:
+        name: Nome
+        race: Raça

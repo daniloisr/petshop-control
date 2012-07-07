@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  client_id: one
+  dog_id: one
+
+two:
+  client_id: two
+  dog_id: two
