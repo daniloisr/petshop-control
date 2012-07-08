@@ -17,6 +17,9 @@
           <%= content_tag :li, :class => controller.is_a?(OrdersController) ? 'active' : '' do %>
             <%= link_to 'Atendimento', orders_path %>
           <% end %>
+          <%= content_tag :li, :class => controller.is_a?(DogsController) ? 'active' : '' do %>
+            <%= link_to 'Cachorros', dogs_path %>
+          <% end %>
           <%= content_tag :li, :class => controller.is_a?(ClientsController) ? 'active' : '' do %>
             <%= link_to 'Clientes', clients_path %>
           <% end %>

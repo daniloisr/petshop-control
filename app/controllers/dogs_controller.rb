@@ -1,4 +1,10 @@
 class DogsController < ApplicationController
+
+  def orders
+    @orders = Dog.find(params[:id]).orders.page(params[:page]).per(100)
+    render '/orders/index', :layout => false
+  end
+
   # GET /dogs
   # GET /dogs.json
   def index

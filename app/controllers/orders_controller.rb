@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.page(params[:page]).per(10)
+    @orders = Order.page(params[:page]).per(15)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -48,7 +48,7 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if @order.save
         @order.dog.update_attribute :owner_id, @order.client.id
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.html { redirect_to @order, notice: 'Pedido criado com sucesso!' }
         format.json { render json: @order, status: :created, location: @order }
       else
         format.html { render action: "new" }
@@ -64,7 +64,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.update_attributes(params[:order])
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+        format.html { redirect_to @order, notice: 'Pedido alterado com sucesso!' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

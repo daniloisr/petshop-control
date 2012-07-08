@@ -1,10 +1,19 @@
+<style type="text/css">
+  .add-margin { margin-top: 10pt; }
+</style>
+
 <h2>Pedidos do dia</h2>
 
-<table>
-  <% Order.open_today.each do |order| %>
-    <tr>
+<% if (@today_orders = Order.open_today).empty? %>
+  <h3>Nenhum Pedido em aberto hoje</h3>
+<% end %>
+
+<table class="table dblclick-table">
+  <% @today_orders.each do |order| %>
+    <tr data-url="<%= url_for(order) %>">
       <td><%= order.client.name %></td>
       <td><%= order.dog.name %></td>
+      <td>R$ <%= order.price %></td>
       <td><%= distance_of_time_in_words_to_now order.created_at %></td>
       <td>
         <%= form_tag order,
@@ -19,22 +28,32 @@
   <% end %>
 </table>
 
-<h2>Últimos pedidos atendidos</h2>
+<hr>
 
-<table>
-  <% Order.closed_today.each do |order| %>
-    <tr>
+
+
+<h2 class="add-margin">Últimos pedidos atendidos</h2>
+
+<% if (@closed_today = Order.closed_today).empty? %>
+  <h3>Nenhum Pedido feito hoje</h3>
+<% end %>
+
+<table class="table dblclick-table">
+  <% @closed_today.each do |order| %>
+    <tr data-url="<%= url_for(order) %>">
       <td><%= order.client.name %></td>
       <td><%= order.dog.name %></td>
+      <td>R$ <%= order.price %></td>
       <td><%= distance_of_time_in_words_to_now order.created_at %></td>
     </tr>
   <% end %>
 </table>
 
+<hr>
 
-<h2>Novo atendimento</h2>
 
-<%= link_to 'Novo Pedido', new_order_path %>
+
+<%= link_to content_tag(:h2, 'Novo pedido', :class => 'add-margin'), new_order_path %>
 
 
 <% content_for :javascripts do %>

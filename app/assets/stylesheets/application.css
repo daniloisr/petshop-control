@@ -12,3 +12,7 @@
  *= require chosen
  *= require_self
 */
+
+table.dblclick-table tr {
+  cursor: pointer;
+}

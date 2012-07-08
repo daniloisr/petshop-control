@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      user: Usuários
+    attributes:
+      user:
+        name: Nome
+        email: Email
+        password: Senha
+        remember_me: Lembrar meu acesso?
+

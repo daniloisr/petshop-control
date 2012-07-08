@@ -11,6 +11,7 @@ gem 'mysql2'
 gem 'bootstrap-sass'
 gem 'kaminari'
 gem 'simple_form'
+gem 'devise'
 
 
 # Gems used only for assets and not required

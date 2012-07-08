@@ -1,6 +1,6 @@
 <h1>Lista de Atendimentos</h1>
 
-<table>
+<table class="table dblclick-table">
   <tr>
     <th>Cliente</th>
     <th>Cachorro</th>
@@ -9,7 +9,7 @@
   </tr>
 
 <% @orders.each do |order| %>
-  <tr>
+  <tr data-url=<%= url_for(order) %>>
     <td><%= order.client.name %></td>
     <td><%= order.dog.name %></td>
     <td>R$ <%= order.price %></td>
