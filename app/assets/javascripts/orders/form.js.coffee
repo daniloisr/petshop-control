@@ -36,3 +36,4 @@ $(document).ready ->
           _.each(dog_fields, (v, k) -> $(v).val(data[k]).attr('disabled', 'disabled')))
       , 'json')
 
+  $('#order_client_attributes_phone').mask '9999-9999'

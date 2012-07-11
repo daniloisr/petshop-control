@@ -23,6 +23,11 @@
           <%= content_tag :li, :class => controller.is_a?(ClientsController) ? 'active' : '' do %>
             <%= link_to 'Clientes', clients_path %>
           <% end %>
+          <% if user_signed_in? %>
+            <%= content_tag :li do %>
+              <%= link_to 'Sair', destroy_user_session_path, :method => :delete %>
+            <% end %>
+          <% end %>
         </ul>
       </div>
     </div>

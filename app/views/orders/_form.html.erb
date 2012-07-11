@@ -1,5 +1,11 @@
 <% content_for :javascripts, javascript_include_tag('orders/form') %>
 
+<style type="text/css">
+select {
+  width: 100%;
+}
+</style>
+
 <%= simple_form_for(@order,
   :html => { :class => 'form-horizontal' }) do |f| %>
   
@@ -7,8 +13,12 @@
 
   <legend>Cliente</legend>
   <div id="client-select">
-    <%= f.association :client, :input_html => {
-      :'data-placeholder' => 'Escolha um cliente' },
+    <%= f.association :client,
+      :collection => Client.all,
+      :label_method => lambda {|client| client.name + ' - ' + client.phone },
+      :input_html => {
+        :'data-placeholder' => 'Escolha um cliente'
+      },
       :include_blank => true %>
   </div>
 
@@ -23,7 +33,8 @@
 
   <legend>Cachorro</legend>
   <%= f.association :dog, :input_html => {
-      :'data-placeholder' => 'Escolha um Cachorro' },
+        :'data-placeholder' => 'Escolha um Cachorro'
+      },
       :include_blank => true  %>
 
   <% @order.build_dog if @order.dog.nil? %>

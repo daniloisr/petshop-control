@@ -27,9 +27,3 @@ capybara-*.html
 **.orig
 rerun.txt
 pickle-email-*.html
-
-# Crane ignored files
-repositories/*
-
-Gemfile.lock
-lib/migrate/config.yml
