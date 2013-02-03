@@ -11,4 +11,7 @@ BolaDePelo::Application.routes.draw do
   resources :dogs do
     get :orders, :on => :member
   end
+  namespace :employee do
+    resources :general_informations
+  end
 end
