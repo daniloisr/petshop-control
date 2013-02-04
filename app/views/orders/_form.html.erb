@@ -32,15 +32,15 @@ select {
   </div>
 
   <legend>Cachorro</legend>
-  <%= f.association :dog, :input_html => {
-        :'data-placeholder' => 'Escolha um Cachorro'
-      },
-      :include_blank => true  %>
+  <%= f.association :dog,
+    input_html: { :'data-placeholder' => 'Escolha um Cachorro' },
+    collection: [],
+    include_blank: true  %>
 
   <% @order.build_dog if @order.dog.nil? %>
-  <%= f.simple_fields_for :dog do |fc| %>
-    <%= fc.input :name %>
-    <%= fc.input :race %>
+  <%= f.simple_fields_for :dog do |dog_form| %>
+    <%= dog_form.input :name %>
+    <%= dog_form.input :race %>
   <% end %>
 
   <legend>+ Informações</legend>

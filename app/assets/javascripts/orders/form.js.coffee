@@ -21,6 +21,7 @@ $(document).ready ->
         ((data) ->
           _.each client_fields, (v, k) -> $(v).val(data[k]).attr('disabled', 'disabled')
         ), 'json'
+      update_dogs(id)
 
   $('#order_dog_id').chosen({
     allow_single_deselect: true
@@ -36,4 +37,11 @@ $(document).ready ->
           _.each(dog_fields, (v, k) -> $(v).val(data[k]).attr('disabled', 'disabled')))
       , 'json')
 
-  $('#order_client_attributes_phone').mask '9999-9999'
+  #$('#order_client_attributes_phone').mask '9999-9999'
+   update_dogs = (client_id) ->
+     url = "/clients/#{client_id}/dogs"
+     $.get url, (data) ->
+       $('#order_dog_id').empty().append("<option></option>")
+       _.each data, (v) ->
+         $('#order_dog_id').append("<option value='#{v['id']}'>#{v['name']}</option>")
+       $('#order_dog_id').trigger("liszt:updated")

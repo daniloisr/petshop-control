@@ -15,5 +15,4 @@
 //= require underscore-min
 //= require bootstrap
 //= require chosen-jquery
-//= require jquery.maskedinput-1.3.min
 //= require common

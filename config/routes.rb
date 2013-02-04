@@ -7,7 +7,9 @@ BolaDePelo::Application.routes.draw do
   get "pages/home", :as => :home
 
   resources :orders
-  resources :clients
+  resources :clients do
+    resources :dogs, only: :index, controller: "clients/dogs"
+  end
   resources :dogs do
     get :orders, :on => :member
   end
