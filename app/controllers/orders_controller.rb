@@ -43,7 +43,7 @@ class OrdersController < ApplicationController
     params['order'].delete('client_attributes') unless params['order']['client_id'].blank?
     params['order'].delete('dog_attributes')    unless params['order']['dog_id'].blank?
 
-    @order = Order.new(params[:order])
+    @order = Order.new(order_params)
 
     respond_to do |format|
       if @order.save
@@ -63,7 +63,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
 
     respond_to do |format|
-      if @order.update_attributes(params[:order])
+      if @order.update_attributes(order_params)
         format.html { redirect_to @order, notice: 'Pedido alterado com sucesso!' }
         format.json { head :no_content }
       else
@@ -83,5 +83,15 @@ class OrdersController < ApplicationController
       format.html { redirect_to orders_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def order_params
+    params.require(:order).permit(:client_id,
+                                  :dog_id,
+                                  :price,
+                                  :info,
+                                  :dog_attributes => [:name, :race],
+                                  :client_attributes => [:name, :address, :phone])
   end
 end
